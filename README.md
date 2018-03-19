@@ -1,6 +1,6 @@
 # django-apistar
 
-this app is an **experimental** django-apistar hybrid.
+this app is an **experimental** django-apistar hybrid. a pure proof of concept.
 
 the ideas behind this experiment are:
 
