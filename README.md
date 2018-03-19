@@ -6,7 +6,7 @@ the ideas behind this experiment are:
 
 - API Star supports django's ORM out of the box and already works beautifully and quickly in production;
 - django has all the features devs love, like the `shell` and the `admin`, all of which are supposed to be for devs only;
-- we have no true reason to not hook up them both into the same django models (besides **being shameless**). we would need to run API Star's service in a different thread of the django's (for that django admin goodness), preserving API Star's speed for the clients and the whole django toolbox for devs.
+- we have no true reason to not hook up them both into the same django models (besides **being shameless**). we would need to run API Star's service in a different thread from the django's (for that django admin goodness), preserving API Star's speed for the clients and the whole django toolbox for devs.
 
 I know, **it is a bad idea**, but I couldn't **not** try.
 and everything works. yeah. there's only one catch. **a really big catch: testing.** there's a section about it at the bottom of the readme.
