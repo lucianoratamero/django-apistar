@@ -1,0 +1,10 @@
+bin
+lib
+include
+local
+share
+__pycache__
+*sqlite3
+pip-selfcheck.json
+.pytest_cache
+*.pyc
