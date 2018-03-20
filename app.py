@@ -25,13 +25,13 @@ if os.environ.get('TEST'):
 
 if os.environ.get('DEBUG'):
     routes.append(Include('/docs', docs_urls))
-
-app = App(
-    routes=routes,
-    settings=settings,
-    commands=django_orm.commands,
-    components=django_orm.components,
-)
-
-if __name__ == '__main__':
-    app.main()
+#
+# app = App(
+#     routes=routes,
+#     settings=settings,
+#     commands=django_orm.commands,
+#     components=django_orm.components,
+# )
+#
+# if __name__ == '__main__':
+#     app.main()
