@@ -1,6 +1,8 @@
 
 import os
 
+from django_apistar.auth import DjangoBasicAuthentication
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -14,7 +16,28 @@ SECRET_KEY = 'z)jxc0y(arttc@e9%p0hbiel3@_ajrt7!i#uh4z#m4cg&m*(1#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+# Database
+# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+if os.environ.get('TEST'):
+    DATABASES['default']['NAME'] = 'test.db.sqlite3'
+
+APISTAR_SETTINGS = {
+    'DATABASES': DATABASES,
+    'INSTALLED_APPS': ['core', 'django.contrib.auth', 'django.contrib.contenttypes', ],
+    'AUTHENTICATION': [DjangoBasicAuthentication()],
+}
+
+APISTAR_ROUTE_CONF = 'core.routes'
 
 
 # Application definition
@@ -26,8 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
+    'django_apistar',
     'core',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -37,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_apistar.middleware.RequestMiddleware',
 ]
 
 ROOT_URLCONF = 'django_settings.urls'
@@ -58,20 +85,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_settings.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-if os.environ.get('TEST'):
-    DATABASES['default']['NAME'] = 'test.db.sqlite3'
 
 
 # Password validation
